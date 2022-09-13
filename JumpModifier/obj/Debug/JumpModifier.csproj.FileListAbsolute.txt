@@ -1,0 +1,2 @@
+D:\Projects\ValheimMod\JumpModifier\obj\Debug\JumpModifier.csproj.AssemblyReference.cache
+D:\Projects\ValheimMod\JumpModifier\obj\Debug\JumpModifier.csproj.CoreCompileInputs.cache

@@ -1,0 +1,12 @@
+D:\Projects\ValheimMod\JumpModifier\bin\Release\JumpModifier.dll
+D:\Projects\ValheimMod\JumpModifier\bin\Release\JumpModifier.pdb
+D:\Projects\ValheimMod\JumpModifier\bin\Release\0Harmony.dll
+D:\Projects\ValheimMod\JumpModifier\bin\Release\assembly_valheim.dll
+D:\Projects\ValheimMod\JumpModifier\bin\Release\BepInEx.dll
+D:\Projects\ValheimMod\JumpModifier\bin\Release\UnityEngine.CoreModule.dll
+D:\Projects\ValheimMod\JumpModifier\bin\Release\UnityEngine.dll
+D:\Projects\ValheimMod\JumpModifier\obj\Release\JumpModifier.csproj.AssemblyReference.cache
+D:\Projects\ValheimMod\JumpModifier\obj\Release\JumpModifier.csproj.CoreCompileInputs.cache
+D:\Projects\ValheimMod\JumpModifier\obj\Release\JumpModifier.csproj.CopyComplete
+D:\Projects\ValheimMod\JumpModifier\obj\Release\JumpModifier.dll
+D:\Projects\ValheimMod\JumpModifier\obj\Release\JumpModifier.pdb
