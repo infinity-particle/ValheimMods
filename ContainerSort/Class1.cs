@@ -2,6 +2,8 @@
 using BepInEx.Configuration;
 using HarmonyLib;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,14 +46,22 @@ namespace ContainerSortPlugin
         void SortContainer()
         {
             Inventory inventory = InventoryGui.instance.m_container.GetComponentInChildren<InventoryGrid>().GetInventory();
-            var toSort = inventory.GetAllItems().OrderBy((item) => item.m_shared.m_name);
+            List<ItemDrop.ItemData> sortedItemList = inventory.GetAllItems().OrderBy((item) => item.m_shared.m_name).ToList();
+
+            Logger.LogInfo($"itemList size before RemoveAll: {sortedItemList.Count}");
+            inventory.RemoveAll();
+            Logger.LogInfo($"itemList size after RemoveAll: {sortedItemList.Count}");
+
+            foreach (var item in sortedItemList)
+            {
+                inventory.AddItem(item);
+            }
         }
 
         GameObject GetSortButton()
         {
             if (sortButton != null)
                 return sortButton;
-
 
             Logger.LogDebug("SortButton is null. Creating new button...");
 
@@ -85,11 +95,20 @@ namespace ContainerSortPlugin
 
         GameObject MakeContainerButton()
         {
-            var bkg = InventoryGui.instance.m_container.Find("Bkg");
             var takeAllButton = InventoryGui.instance.m_container.Find("TakeAll");
+            RectTransform rt = (RectTransform)takeAllButton.transform;
+            float width = rt.rect.width;
+            float height = rt.rect.height;
 
-            GameObject obj = Instantiate(GetSortButton(), bkg);
-            obj.transform.localPosition = new Vector3((obj.transform.parent as RectTransform).rect.xMax - BUTTON_WIDTH, (obj.transform.parent as RectTransform).rect.yMax - BUTTON_HEIGHT, 0);
+            GameObject obj = Instantiate(GetSortButton(), takeAllButton.parent);
+            RectTransform sortButtonRect = (RectTransform)obj.transform;
+            float sortButtonWidth = sortButtonRect.rect.width;
+            float sortButtonHeight = sortButtonRect.rect.height;
+
+            var x = (obj.transform.parent as RectTransform).rect.width - sortButtonWidth / 2;
+            var y = takeAllButton.transform.localPosition.y;
+            //var y = (obj.transform.parent as RectTransform).rect.height;
+            obj.transform.localPosition = new Vector3(x, y, 0);
 
             var btn = obj.GetComponent<Button>();
             btn.onClick.AddListener(SortContainer);
